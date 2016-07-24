@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/todoapp.css">
 
+    <script src="//underscorejs.org/underscore.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
-    <script src="js/controllers/main.js"></script>
-    <script src="js/services/user.js"></script>
-    <script src="js/services/todo.js"></script>
-    <script src="js/core.js"></script>
+    <script src="js/controllers/UserController.js"></script>
+    <script src="js/services/UserService.js"></script>
+    <script src="js/services/TodoService.js"></script>
+    <script src="js/App.js"></script>
 
 </head>
 <body ng-controller="mainController">
@@ -21,7 +22,7 @@
         <h2>Select user</h2>
     </div>
     <div class="col-lg-8 text-center" ng-show="userSelected">
-        <h2>{{ userSelected.text }}' todo list </h2>
+        <h2>{{ userSelected.text }}'s todo list </h2>
     </div>
     <table class="col-lg-8">
         <div>
