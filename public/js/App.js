@@ -1,1 +1,1 @@
-angular.module('todoapp', ['userController', 'userService', 'todoService']);
+angular.module('todoapp', ['ngAnimate', 'userController', 'userService', 'todoService']);

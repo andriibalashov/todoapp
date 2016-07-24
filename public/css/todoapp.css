@@ -1,3 +1,12 @@
 .selected {
     background-color: #91c9ff;
 }
+
+.faded {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.faded.ng-hide {
+    opacity:0;
+}
