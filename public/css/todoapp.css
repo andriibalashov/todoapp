@@ -2,6 +2,10 @@
     background-color: #91c9ff;
 }
 
+tr.border_bottom td {
+    border-bottom:1pt solid black;
+}
+
 .faded {
     -webkit-transition:all linear 0.5s;
     transition:all linear 0.5s;

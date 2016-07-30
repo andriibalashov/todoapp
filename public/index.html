@@ -2,127 +2,24 @@
 <html ng-app="todoapp">
 <head>
 
-    <title>Todo</title>
+    <title>todoapp</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/todoapp.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.0.0/toaster.css">
+    <link rel="stylesheet" href="../css/todoapp.css">
 
     <script src="//underscorejs.org/underscore.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
-    <script src="js/controllers/UserController.js"></script>
-    <script src="js/services/UserService.js"></script>
-    <script src="js/services/TodoService.js"></script>
-    <script src="js/App.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.0.0/toaster.js"></script>
+    <script src="../js/App.js"></script>
+    <script src="../js/controllers/UserController.js"></script>
+    <script src="../js/controllers/TodoController.js"></script>
+    <script src="../js/services/UserService.js"></script>
+    <script src="../js/services/TodoService.js"></script>
 
 </head>
-<body ng-controller="mainController">
-<div class="container col-lg-8 center">
-    <div class="col-lg-8 text-center" ng-show="!userSelected">
-        <h2>Select user</h2>
-    </div>
-    <div class="col-lg-8 text-center" ng-show="userSelected">
-        <h2>{{ userSelected.text }}'s todo list </h2>
-    </div>
-    <table class="col-lg-8">
-        <div>
-            <form class="form-inline">
-                <input ng-model="query" type="text" class="center col-lg-8 text-center"
-                       placeholder="Filter by" autofocus>
-            </form>
-        </div>
-        <tr>
-            <td valign="top" class="col-lg-6">
-
-                <div id="user-form" class="row">
-                    <div>
-                        <form>
-                            <div>
-                                <input type="text" class="col-lg-8 input-sm text-center" placeholder="Add new user"
-                                       ng-model="userData.text">
-                                <button type="submit" class="btn btn-primary btn-sm" ng-click="createUser()">Add
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div>
-                    <div id="user-list" class="row">
-                        <div >
-                            <table>
-
-                                <tr ng-repeat="user in users| filter:query | orderBy: user.text"
-                                    ng-click="setSelected(user)">
-                                    <td ng-class="{selected:user._id === userSelected._id}">
-                                        <label class="col-lg-8">
-                                            {{ user.text }}
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-xs" ng-click="deleteUser(user._id)">
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <p class="text-center" ng-show="loading">
-                                <span class="fa fa-spinner fa-spin fa-3x"></span>
-                            </p>
-                        </div>
-                    </div>
-
-
-                </div>
-            </td>
-            <td valign="top" class="col-lg-6">
-
-                <div class="faded" ng-show="userSelected">
-
-                    <div id="todo-form" class="row">
-                        <div>
-                            <form>
-                                <div>
-                                    <input type="text" class="col-lg-6 input-sm text-center" placeholder="Add todo"
-                                           ng-model="todoData.text">
-                                    <button type="submit" class="btn btn-primary btn-sm" ng-click="createTodo()">Add
-                                    </button>
-                                    <button type="submit" class="btn btn-primary btn-sm" ng-click="unselectUser()">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div id="todo-list" class="row">
-                        <div >
-                            <table>
-                                <tr ng-repeat="todo in userSelected.todo | filter:query">
-                                    <td>
-                                        <label>
-                                            {{ todo.text }}
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <button type="submit" class="btn btn-xs" ng-click="deleteTodo(todo._id)">
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <p class="text-center" ng-show="loading">
-                                <span class="fa fa-spinner fa-spin fa-3x"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
-</div>
-</body>
+<div ng-view></div>
 </html>

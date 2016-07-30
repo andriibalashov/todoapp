@@ -1,0 +1,114 @@
+<body ng-app="todoapp" ng-controller="UserController">
+<div class="container col-lg-8 center">
+    <div class="col-lg-8 text-center" ng-show="!userSelected">
+        <h2>Select user</h2>
+    </div>
+    <div class="col-lg-8 text-center" ng-show="userSelected">
+        <h2>{{ userSelected.text }}'s todo list </h2>
+    </div>
+    <table class="col-lg-8">
+        <div>
+            <form class="form-inline">
+                <input ng-model="query" type="text" class="center col-lg-8 text-center"
+                       placeholder="Filter by" autofocus>
+            </form>
+        </div>
+        <tr>
+            <td valign="top" class="col-lg-6">
+
+                <div id="user-form" class="row">
+                    <div>
+                        <form>
+                            <div>
+                                <input type="text" class="col-lg-8 input-sm text-center" placeholder="Add new user"
+                                       ng-model="userData.text">
+                                <button type="submit" class="btn btn-primary btn-sm" ng-click="createUser()">Add
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="user-list" class="row">
+                        <div >
+                            <table>
+
+                                <tr ng-repeat="user in users| filter:query | orderBy: user.text"
+                                    ng-click="setSelected(user)" class="border_bottom">
+                                    <td>
+                                        <button type="submit" class="btn btn-xs" ng-click="deleteUser(user._id)">
+                                            Delete
+                                        </button>
+                                        <a type="submit" class="btn btn-xs" href="#/todo">
+                                            Add todo
+                                        </a>
+                                    </td>
+                                    <td ng-class="{selected:user._id === userSelected._id}">
+                                        <label class="col-lg-8">
+                                            {{ user.text }}
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p class="text-center" ng-show="loading">
+                                <span class="fa fa-spinner fa-spin fa-3x"></span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </td>
+            <td valign="top" class="col-lg-6">
+
+                <div class="faded" ng-show="userSelected">
+
+                    <div id="todo-form" class="row">
+                        <div>
+                            <form>
+                                <div>
+                                    <input type="text" class="col-lg-6 input-sm text-center" placeholder="Quick add todo"
+                                           ng-model="todoData.text">
+                                    <button type="submit" class="btn btn-primary btn-sm" ng-click="createTodo()">Add
+                                    </button>
+                                    <button type="submit" class="btn btn-primary btn-sm" ng-click="unselectUser()">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="todo-list" class="row">
+                        <div >
+                            <table>
+                                <tr ng-repeat="todo in userSelected.todo | filter:query" class="border_bottom">
+                                    <td>
+                                        <button type="submit" class="btn btn-xs" ng-click="deleteTodo(todo._id)">
+                                            Delete
+                                        </button>
+                                        <a type="submit" class="btn btn-xs" href="#/todo/{{todo._id}}">
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <label>
+                                            {{ todo.text }}
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p class="text-center" ng-show="loading">
+                                <span class="fa fa-spinner fa-spin fa-3x"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
