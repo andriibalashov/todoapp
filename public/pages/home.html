@@ -36,18 +36,18 @@
 
                                 <tr ng-repeat="user in users| filter:query | orderBy: user.text"
                                     ng-click="setSelected(user)" class="border_bottom">
-                                    <td>
-                                        <button type="submit" class="btn btn-xs" ng-click="deleteUser(user._id)">
-                                            Delete
-                                        </button>
-                                        <a type="submit" class="btn btn-xs" href="#/todo">
-                                            Add todo
-                                        </a>
-                                    </td>
                                     <td ng-class="{selected:user._id === userSelected._id}">
                                         <label class="col-lg-8">
                                             {{ user.text }}
                                         </label>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-xs" ng-click="deleteUser(user._id)" ng-show="userSelected">
+                                            Delete
+                                        </button>
+                                        <a type="submit" class="btn btn-xs" href="#/todo" ng-show="userSelected">
+                                            Add todo
+                                        </a>
                                     </td>
                                 </tr>
                             </table>
@@ -86,17 +86,17 @@
                             <table>
                                 <tr ng-repeat="todo in userSelected.todo | filter:query" class="border_bottom">
                                     <td>
+                                        <label>
+                                            {{ todo.text }}
+                                        </label>
+                                    </td>
+                                    <td>
                                         <button type="submit" class="btn btn-xs" ng-click="deleteTodo(todo._id)">
                                             Delete
                                         </button>
                                         <a type="submit" class="btn btn-xs" href="#/todo/{{todo._id}}">
                                             Edit
                                         </a>
-                                    </td>
-                                    <td>
-                                        <label>
-                                            {{ todo.text }}
-                                        </label>
                                     </td>
                                 </tr>
                             </table>
